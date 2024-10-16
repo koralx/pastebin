@@ -1,5 +1,19 @@
 # Pastebin microservice app
+## Запуск
+Сомневаюсь, что у вас появится желание это запустить, но (!)
 
-Two microservices
-- Main API use Postgre and YandexCloud S3 via Amazon SDK
-- Hash service use Redis
+Если вы вдруг из интереса захотели это запустить, имейте ввиду, что вам потребуется S3 хранилище, можно использотвать любое совместимое c AWS SDK 
+
+Для запуска требуется указать переменные среды:
+- s3.access-key
+- s3.secret-key
+- s3.region=ru1-central
+- s3.url=https://storage.yandexcloud.net (если YandexCloud)
+
+**Приложение состоит из микросервисов**
+- api - основной сервис для загрузки бинов
+- hash - генерирует хэши по запросу
+
+```text
+./mvnw spring-boot:run
+```

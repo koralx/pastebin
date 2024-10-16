@@ -9,11 +9,11 @@ import org.hibernate.proxy.HibernateProxy;
 import java.util.Date;
 import java.util.Objects;
 
+@Entity
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Entity
 @Table(name="bin")
 public class Bin {
     @Id

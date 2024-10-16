@@ -10,21 +10,23 @@ import software.amazon.awssdk.services.s3.model.GetObjectResponse;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 @Service
-public class YandexCloudService {
+public class S3CloudService {
 
     @Autowired
-    private S3Client yandexS3Client;
+    private S3Client s3Client;
+
+    @Autowired
+    private String s3Bucket;
 
     public void upload(String key, String content) {
-        PutObjectRequest putObjectRequest = PutObjectRequest.builder().bucket("spring-test").key(key).build();
-        yandexS3Client.putObject(putObjectRequest, RequestBody.fromString(content));
+        PutObjectRequest putObjectRequest = PutObjectRequest.builder().bucket(s3Bucket).key(key).build();
+        s3Client.putObject(putObjectRequest, RequestBody.fromString(content));
     }
 
     public String download(String key) {
-        GetObjectRequest getObjectRequest = GetObjectRequest.builder().bucket("spring-test").key(key).build();
+        GetObjectRequest getObjectRequest = GetObjectRequest.builder().bucket(s3Bucket).key(key).build();
 
-        //client.getObjectAsBytes(getObjectRequest);
-        ResponseBytes<GetObjectResponse> objectBytes = yandexS3Client.getObjectAsBytes(getObjectRequest);
+        ResponseBytes<GetObjectResponse> objectBytes = s3Client.getObjectAsBytes(getObjectRequest);
         byte[] data = objectBytes.asByteArray();
 
         return new String(data);
