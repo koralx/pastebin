@@ -64,7 +64,6 @@ public class S3BinService implements BinService {
     }
 
     public BinDto get(String hash) {
-        System.out.printf("Hash: %s%n", hash);
         Bin paste = pasteRepository.findPasteByHashURL(hash);
 
         if (paste == null) {

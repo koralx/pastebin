@@ -12,12 +12,8 @@ public class RedisCounterService {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
-    public Long incrementCounter() {
+    public Long incrementCounterAndGet() {
         return stringRedisTemplate.opsForValue().increment(COUNTER_KEY);
     }
 
-    public Long getCounterValue() {
-        String value = stringRedisTemplate.opsForValue().get(COUNTER_KEY);
-        return value != null ? Long.parseLong(value) : 0L;
-    }
 }

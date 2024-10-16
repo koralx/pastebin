@@ -13,7 +13,8 @@ public class Base64HashGenerationService implements HashGenerationService {
 
     @Override
     public String getHash() {
-        redisCounterService.incrementCounter();
-        return Base64.getEncoder().encodeToString(redisCounterService.getCounterValue().toString().getBytes());
+        Long newCounterValue = redisCounterService.incrementCounterAndGet();
+        return Base64.getEncoder().encodeToString(newCounterValue.toString().getBytes());
     }
+
 }
