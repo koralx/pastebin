@@ -2,6 +2,7 @@ package petproject.pastebin.api.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.proxy.HibernateProxy;
@@ -14,7 +15,8 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name="bin")
+@Table(name="bin", indexes = @Index(name = "hash_and_key_index", columnList = "hashurl, key"))
+@BatchSize(size = 100)
 public class Bin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

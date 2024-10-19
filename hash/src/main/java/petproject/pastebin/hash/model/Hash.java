@@ -12,18 +12,29 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 @Entity
-@Table(name="hash")
+@Table(name="hash", indexes = @Index(name = "hash_and_busy_index", columnList = "value, is_busy"))
 public class Hash {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String value;
+    String value = null;
+
+    Boolean isBusy = false;
     @CreationTimestamp
     Date createdAt;
     @UpdateTimestamp
     Date updatedAt;
+
+    public Hash() {
+
+    }
+
+    public Hash(String value, Boolean busy) {
+        this.value = value;
+        this.isBusy = busy;
+    }
 
     @Override
     public final boolean equals(Object o) {
