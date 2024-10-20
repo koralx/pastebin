@@ -16,7 +16,7 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @Table(name="bin", indexes = @Index(name = "hash_and_key_index", columnList = "hashurl, key"))
-@BatchSize(size = 100)
+@BatchSize(size = 10)
 public class Bin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

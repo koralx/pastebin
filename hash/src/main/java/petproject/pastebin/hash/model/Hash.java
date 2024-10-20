@@ -19,6 +19,7 @@ public class Hash {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @Column(unique = true)
     String value = null;
 
     Boolean isBusy = false;
